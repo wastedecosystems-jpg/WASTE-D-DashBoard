@@ -343,9 +343,10 @@ function populateFilters() {
   [...new Set(allRows.map(r=>r.date.year))].sort().forEach(y=>{
     const o=document.createElement('option'); o.value=y; o.textContent=y; yrSel.appendChild(o);
   });
-  [...new Set(allRows.map(r=>r.date.month))].sort((a,b)=>a-b).forEach(m=>{
+  // แสดง 12 เดือนเสมอ — เดือนที่ยังไม่มีข้อมูลก็แสดง (กรองแล้วจะได้ 0)
+  for(let m=1;m<=12;m++){
     const o=document.createElement('option'); o.value=m; o.textContent=th[m]; moSel.appendChild(o);
-  });
+  }
 }
 
 function applyFilter() {
